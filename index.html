@@ -39,15 +39,22 @@
         .active {
             display: block;
         }
+        .home-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
     <h1>YouTube Stars Racing</h1>
-    <button onclick="navigateTo('download')">Start The Race! (Download)</button>
-    <button onclick="navigateTo('tos')">Terms Of Service (TOS)</button>
 
     <div id="home" class="page active">
         <h2>Welcome to the Home Page</h2>
+        <div class="home-buttons">
+            <button onclick="navigateTo('download')">Start The Race! (Download)</button>
+            <button onclick="navigateTo('tos')">Terms Of Service (TOS)</button>
+        </div>
     </div>
     <div id="download" class="page">
         <h2>Download Page: Get ready to race!</h2>
