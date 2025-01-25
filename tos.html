@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Stars Racing | Terms Of Service</title>
+    <style>
+        body {
+            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        h1 {
+            margin-top: 20px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            transition-duration: 0.4s;
+        }
+        button:hover {
+            background-color: #009999;
+            transform: scale(1.05);
+            transition-duration: 0.4s;
+        }
+        .page {
+            display: none;
+        }
+        .active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>YouTube Stars Racing</h1>
+    <button onclick="navigateTo('download')">Start The Race! (Download)</button>
+    <button onclick="navigateTo('tos')">Terms Of Service (TOS)</button>
+
+    <div id="home" class="page active">
+        <h2>Welcome to the Home Page</h2>
+    </div>
+    <div id="download" class="page">
+        <h2>Download Page: Get ready to race!</h2>
+        <button onclick="navigateTo('home')">Back to Home</button>
+    </div>
+    <div id="tos" class="page">
+        <h2>Terms of Service</h2>
+        <p>Here are the Terms of Service...</p>
+        <button onclick="navigateTo('home')">Back to Home</button>
+    </div>
+
+    <script>
+        // Function to navigate to different pages without refreshing
+        function navigateTo(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // Show the target page
+            document.getElementById(pageId).classList.add('active');
+
+            // Update the URL path without reloading the page
+            window.history.pushState({ page: pageId }, '', `/${pageId}`);
+        }
+
+        // Handle browser navigation (back/forward)
+        window.addEventListener('popstate', (event) => {
+            if (event.state && event.state.page) {
+                navigateTo(event.state.page);
+            }
+        });
+
+        // Handle initial load based on URL
+        if (window.location.pathname !== '/') {
+            navigateTo(window.location.pathname.substring(1));
+        }
+    </script>
+</body>
+</html>
